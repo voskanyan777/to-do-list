@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class Uncoming extends AppCompatActivity {
+public class Upcoming extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
