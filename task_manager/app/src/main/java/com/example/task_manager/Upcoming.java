@@ -16,7 +16,7 @@ public class Upcoming extends AppCompatActivity {
 
     // переход на выполненные задачи
     public void toCompleted(View view){
-            Intent intent = new Intent(this, Completed.class);
-            startActivity(intent);
+        Intent intent = new Intent(this, Completed.class);
+        startActivity(intent);
     }
 }
