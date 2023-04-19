@@ -6,17 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class Upcoming extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_uncoming);
     }
 
-    // переход на главную страницу
+    // переход на выполненные задачи
     public void toCompleted(View view){
-        Intent intent = new Intent(this, Completed.class);
-        startActivity(intent);
+            Intent intent = new Intent(this, Completed.class);
+            startActivity(intent);
     }
 }

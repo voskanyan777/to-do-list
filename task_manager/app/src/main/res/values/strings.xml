@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">task_manager</string>
+    <string name="main_button">Продолжить</string>
+    <string name="greetings">Приветствуем, пользователь!</string>
+    <string name="about_tm">Добро пожаловать в ваш новый task manager! Здесь вы сможете легко создавать и управлять своими задачами, следить за сроками и отслеживать прогресс. Мы надеемся, что это приложение станет вашим незаменимым помощником.</string>
+    <string name="completed_button">Предстоящие</string>
+    <string name="completed_highlight">Выполненные задачи</string>
+    <string name="upcoming_button">Выполненные</string>
+    <string name="upcoming_highlight">Предстоящие задачи</string>
+
 </resources>
