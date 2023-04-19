@@ -3,23 +3,32 @@ package com.example.task_manager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences prefs = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int a = -12;
         super.onCreate(savedInstanceState);
-        if (a > 0){
-            setContentView(R.layout.activity_uncoming);
-        }
-        else{
-            setContentView(R.layout.activity_main);
-        }
+        setContentView(R.layout.activity_main);
+        prefs = getSharedPreferences("com.example.task_manager", MODE_PRIVATE);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true)) {
+            setContentView(R.layout.activity_main);
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
+        else{
+            setContentView(R.layout.activity_uncoming);
+        }
+    }
     // переход на главную страницу
     public void toCompleted(View view){
         Intent intent = new Intent(this, Upcoming.class);
