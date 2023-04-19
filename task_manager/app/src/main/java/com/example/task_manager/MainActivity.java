@@ -10,17 +10,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        /*
-        * int a = 12;
+        int a = -12;
         super.onCreate(savedInstanceState);
         if (a > 0){
             setContentView(R.layout.activity_uncoming);
         }
         else{
             setContentView(R.layout.activity_main);
-        }*/
+        }
     }
 
     // переход на главную страницу
