@@ -14,6 +14,7 @@ public class Upcoming extends AppCompatActivity {
         setContentView(R.layout.activity_uncoming);
     }
 
+    // переход на выполненные задачи
     public void toCompleted(View view){
             Intent intent = new Intent(this, Completed.class);
             startActivity(intent);

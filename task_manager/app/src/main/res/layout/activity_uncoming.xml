@@ -44,21 +44,21 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_above="@id/low_block"
-        android:layout_marginBottom="55dp"
-        android:orientation="horizontal"
         android:layout_marginHorizontal="50dp"
-        android:gravity="center">
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/completed_button"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/for_buttons"
-            android:onClick="toUncoming"
+            android:onClick="toCompleted"
             android:text="@string/upcoming_button"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            style="?android:attr/buttonBarButtonStyle" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/plus_button"

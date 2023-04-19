@@ -44,31 +44,30 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_above="@id/low_block"
-        android:layout_marginBottom="55dp"
-        android:orientation="horizontal"
         android:layout_marginHorizontal="50dp"
-        android:gravity="center">
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/completed_button"
-            android:onClick="toUpcoming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/for_buttons"
+            android:onClick="toUpcoming"
             android:text="@string/completed_button"
-            android:textSize="20sp"
-            />
-<!--        <Button-->
-<!--            android:id="@+id/plus_button"-->
-<!--            android:layout_width="60dp"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:backgroundTint="@color/for_buttons"-->
-<!--            android:layout_marginStart="30dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="60sp"-->
+            android:textSize="20sp" />
+        <!--        <Button-->
+        <!--            android:id="@+id/plus_button"-->
+        <!--            android:layout_width="60dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:backgroundTint="@color/for_buttons"-->
+        <!--            android:layout_marginStart="30dp"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="60sp"-->
 
-<!--            android:text="+"-->
-<!--            android:background = "@drawable/circle"/>-->
+        <!--            android:text="+"-->
+        <!--            android:background = "@drawable/circle"/>-->
 
     </LinearLayout>
 
