@@ -30,8 +30,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // переход на главную страницу
-    public void toCompleted(View view){
+    public void toUnCompleted(View view){
         Intent intent = new Intent(this, Upcoming.class);
+        startActivity(intent);
+    }
+    public void toCompleted(View view){
+        Intent intent = new Intent(this, Completed.class);
         startActivity(intent);
     }
 }

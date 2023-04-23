@@ -57,7 +57,7 @@
         android:layout_marginBottom="23dp"
         android:backgroundTint="@color/for_buttons"
         android:fontFamily="@font/montserrat_bold"
-        android:onClick="toCompleted"
+        android:onClick="toUnCompleted"
         android:text="@string/main_button"
         android:textSize="15sp" />
 
