@@ -20,6 +20,8 @@ public class Upcoming extends AppCompatActivity {
     ListView listViewData;
     ArrayAdapter<String> adapter;
     ArrayList<String> list = new ArrayList<String>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,7 @@ public class Upcoming extends AppCompatActivity {
             }
         });
     }
+
 
     // переход на выполненные задачи
     public void toCompleted(View view){
