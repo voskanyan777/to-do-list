@@ -10,10 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import com.example.task_manager.db.MyDbManager;
+
 import java.util.ArrayList;
 
 public class Upcoming extends AppCompatActivity {
 
+    private MyDbManager myDbManager;
     ListView listViewData;
     ArrayAdapter<String> adapter;
     ArrayList<String> list = new ArrayList<String>();
@@ -21,17 +24,10 @@ public class Upcoming extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uncoming);
+        myDbManager = new MyDbManager(this);
+        myDbManager.openDb();
         listViewData = findViewById(R.id.listView_data);
-        list.add("Дел12о1");
-        list.add("Дел123123о2");
-        list.add("Дело23133");
-        list.add("Делawdaо3");
-        list.add("Делwadawdо3");
-        list.add("Делawdawdawdawdawdawdawdawdawdawdawdо3");
-        list.add("Делоawdadawdawd3");
-        list.add("Делawdawо3");
-        list.add("Делоddawdawdaw3");
-        list.add("awd");
+
 
         //Создание списка с чекбоксами. `simple_list_item_checked` -> параметр для создание чекбокса
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked, list) {
