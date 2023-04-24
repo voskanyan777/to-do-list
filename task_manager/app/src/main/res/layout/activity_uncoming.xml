@@ -30,10 +30,16 @@
         android:layout_height="match_parent"
         android:layout_above="@id/button_block"
         android:layout_below="@id/up_block"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
         android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/listView_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="multipleChoice" />
     </RelativeLayout>
 
     <LinearLayout
@@ -57,17 +63,6 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/plus_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/circle"
-            android:backgroundTint="@color/for_buttons"
-            android:text="+"
-            android:textColor="@color/white"
-            android:textSize="60sp"
-            app:strokeColor="#8BC34A" />
     </LinearLayout>
 
     <RelativeLayout

@@ -6,8 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
 
     SharedPreferences prefs = null;
     @Override
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             setContentView(R.layout.activity_uncoming);
+            Intent intent = new Intent(this, Upcoming.class);
+            startActivity(intent);
         }
     }
     // переход на главную страницу
