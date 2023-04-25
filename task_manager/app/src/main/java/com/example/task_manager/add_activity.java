@@ -12,6 +12,7 @@ import com.example.task_manager.db.MyDbManager;
 
 public class add_activity extends AppCompatActivity {
 
+    Toast toast;
     EditText entertext;
     private MyDbManager myDbManager;
     @Override
@@ -26,12 +27,12 @@ public class add_activity extends AppCompatActivity {
         //entertext.getText();
         if(entertext.getText().toString().equals("")){
             String empty_line = "Вы пытаетесь добавить пустую задачу. Не считаете ли вы это странным?\uD83D\uDE10";
-            Toast toast = Toast.makeText(getApplicationContext(), empty_line, Toast.LENGTH_LONG);toast.show();
+            toast = Toast.makeText(getApplicationContext(), empty_line, Toast.LENGTH_LONG);toast.show();
         }
         else{
             myDbManager.insertToDb(entertext.getText().toString());
             myDbManager.closeDb();
-            Toast toast = Toast.makeText(getApplicationContext(), "Задача добавлена", Toast.LENGTH_SHORT);toast.show();
+            toast = Toast.makeText(getApplicationContext(), "Задача добавлена", Toast.LENGTH_SHORT);toast.show();
             Intent intent = new Intent(this,Upcoming.class);
             startActivity(intent);
         }
