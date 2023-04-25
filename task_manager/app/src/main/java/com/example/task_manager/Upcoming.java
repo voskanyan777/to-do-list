@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.task_manager.db.MyDbManager;
 
@@ -28,6 +29,8 @@ public class Upcoming extends AppCompatActivity {
         setContentView(R.layout.activity_uncoming);
         myDbManager = new MyDbManager(this);
         myDbManager.openDb();
+
+        list = myDbManager.getFromDb();
         listViewData = findViewById(R.id.listView_data);
 
 
@@ -51,6 +54,7 @@ public class Upcoming extends AppCompatActivity {
                 String item = adapter.getItem(position);
                 // Удаляем элемент из списка
                 adapter.remove(item);
+                Toast toast = Toast.makeText(getApplicationContext(), "Задача выполнена! \uD83D\uDE00", Toast.LENGTH_SHORT);toast.show();
                 // Уведомляем адаптер об изменении данных
                 adapter.notifyDataSetChanged();
             }
@@ -61,6 +65,11 @@ public class Upcoming extends AppCompatActivity {
     // переход на выполненные задачи
     public void toCompleted(View view){
         Intent intent = new Intent(this, Completed.class);
+        startActivity(intent);
+    }
+    //Нажатие на кнопку Плюс
+    public void  plus_button(View view){
+        Intent intent = new Intent(this,add_activity.class);
         startActivity(intent);
     }
 }

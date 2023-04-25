@@ -7,5 +7,7 @@
     <string name="completed_highlight">Выполненные задачи</string>
     <string name="upcoming_button">Выполненные</string>
     <string name="upcoming_highlight">Предстоящие задачи</string>
+    <string name="add_task">Добавьте задачу</string>
+    <string name="save">save</string>
 
 </resources>
