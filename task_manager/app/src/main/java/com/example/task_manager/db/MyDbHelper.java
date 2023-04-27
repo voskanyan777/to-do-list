@@ -15,11 +15,13 @@ public class MyDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(MyConstants.TABLE_STRUCTURE);
+        sqLiteDatabase.execSQL(MyConstants.COMPLETED_TABLE_STRUCTURE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(MyConstants.DROP_TABLE);
+        sqLiteDatabase.execSQL(MyConstants.COMPLETED_DROP_TABLE);
         onCreate(sqLiteDatabase);
     }
 }
