@@ -71,13 +71,11 @@ public class MyDbManager {
     //удаление данных из таблицы с предстоящими событиями
     public void deleteData(String title) {
         db.delete(MyConstants.TABLE_NAME, MyConstants.TITLE + "=?", new String[]{title});
-        db.close();
     }
 
     //удаление данных из таблицы с предстоящими событиями
     public void deleteCompletedData(String title) {
         db.delete(MyConstants.COMPLETED_TABLE_NAME, MyConstants.TITLE + "=?", new String[]{title});
-        db.close();
     }
 
     //Закрытие БД

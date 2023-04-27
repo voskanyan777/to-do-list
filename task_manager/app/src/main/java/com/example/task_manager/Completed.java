@@ -52,7 +52,6 @@ public class Completed extends AppCompatActivity {
                 adapter.remove(item);
                 myDbManager.insertToDb(item);
                 myDbManager.deleteCompletedData(item);
-                Toast toast = Toast.makeText(getApplicationContext(), "Задача выполнена! \uD83D\uDE00", Toast.LENGTH_SHORT);toast.show();
                 // Уведомляем адаптер об изменении данных
                 adapter.notifyDataSetChanged();
             }
@@ -63,5 +62,11 @@ public class Completed extends AppCompatActivity {
     public void toUpcoming(View view) {
         Intent intent = new Intent(this, Upcoming.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        myDbManager.closeDb();
     }
 }

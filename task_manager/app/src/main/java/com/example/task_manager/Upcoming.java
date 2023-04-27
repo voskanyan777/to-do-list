@@ -74,4 +74,9 @@ public class Upcoming extends AppCompatActivity {
         Intent intent = new Intent(this,add_activity.class);
         startActivity(intent);
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        myDbManager.closeDb();
+    }
 }
