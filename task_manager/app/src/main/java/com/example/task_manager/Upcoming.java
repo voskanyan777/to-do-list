@@ -54,6 +54,7 @@ public class Upcoming extends AppCompatActivity {
                 String item = adapter.getItem(position);
                 // Удаляем элемент из списка
                 adapter.remove(item);
+                myDbManager.deleteData(item);
                 Toast toast = Toast.makeText(getApplicationContext(), "Задача выполнена! \uD83D\uDE00", Toast.LENGTH_SHORT);toast.show();
                 // Уведомляем адаптер об изменении данных
                 adapter.notifyDataSetChanged();

@@ -40,6 +40,10 @@ public class MyDbManager {
         cursor.close();
         return tempList;
     }
+    public void deleteData(String title) {
+        db.delete(MyConstants.TABLE_NAME, MyConstants.TITLE + "=?", new String[]{title});
+        db.close();
+    }
     //Закрытие БД
     public void closeDb(){
         myDbHelper.close();
