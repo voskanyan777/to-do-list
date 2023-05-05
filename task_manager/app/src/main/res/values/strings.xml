@@ -9,5 +9,6 @@
     <string name="upcoming_highlight">Предстоящие задачи</string>
     <string name="add_task">Добавьте задачу</string>
     <string name="save">save</string>
+    <string name="clear_db">Очистить</string>
 
 </resources>

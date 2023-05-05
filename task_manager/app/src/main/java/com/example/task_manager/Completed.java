@@ -63,6 +63,15 @@ public class Completed extends AppCompatActivity {
         Intent intent = new Intent(this, Upcoming.class);
         startActivity(intent);
     }
+    //Очистка списка выполненных задач
+    public void Dbclear(View view){
+        if(list.size() == 0){
+            return;
+        }
+        myDbManager.clear_table();
+        startActivity(new Intent(this, Completed.class));
+        Toast toast = Toast.makeText(getApplicationContext(), "Список очищен!", Toast.LENGTH_SHORT);toast.show();
+    }
 
     @Override
     protected void onDestroy() {
