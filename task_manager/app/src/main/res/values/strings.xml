@@ -10,5 +10,9 @@
     <string name="add_task">Добавьте задачу</string>
     <string name="save">save</string>
     <string name="clear_db">Очистить</string>
+    <string-array name="sort_option">
+        <item>Сортировка: Важные -> Неважные</item>
+        <item>Сортировка: НеВажные -> Важные</item>
+    </string-array>
 
 </resources>

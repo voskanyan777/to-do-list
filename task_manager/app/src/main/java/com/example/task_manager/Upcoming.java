@@ -9,17 +9,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.task_manager.db.MyDbManager;
 
 import java.util.ArrayList;
 
-public class Upcoming extends AppCompatActivity {
+public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private MyDbManager myDbManager;
     ListView listViewData;
     ArrayAdapter<String> adapter;
+    ArrayAdapter<CharSequence> adapter1;
     ArrayList<String> list = new ArrayList<String>();
 
 
@@ -27,6 +29,12 @@ public class Upcoming extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uncoming);
+        Spinner spinner = findViewById(R.id.sort_spinner);
+        adapter1 = ArrayAdapter.createFromResource(this,R.array.sort_option, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter1);
+        spinner.setOnItemSelectedListener(this);
+
         myDbManager = new MyDbManager(this);
         myDbManager.openDb();
 
@@ -78,5 +86,15 @@ public class Upcoming extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         myDbManager.closeDb();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(adapterView.getContext(), "awda", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
