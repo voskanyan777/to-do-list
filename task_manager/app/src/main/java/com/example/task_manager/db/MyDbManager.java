@@ -23,8 +23,9 @@ public class MyDbManager {
     }
 
     //Добавление в базу таблицу с предстоящими задачами
-    public void insertToDb(String title) {
+    public void insertToDb(String title, int id) {
         ContentValues cv = new ContentValues();
+        cv.put(MyConstants._ID, id);
         cv.put(MyConstants.TITLE, title);
         db.insert(MyConstants.TABLE_NAME, null, cv);
     }
@@ -74,8 +75,12 @@ public class MyDbManager {
     }
 
     //Очистка таблицы с выполненными задачами
-    public void clear_table(){
+    public void clear_table() {
         db.execSQL("DELETE FROM " + MyConstants.COMPLETED_TABLE_NAME + ";");
+    }
+    public void db_sort(){
+        String query = "SELECT * FROM " + MyConstants.TABLE_NAME + " ORDER BY " + MyConstants._ID + " DESC";
+        Cursor cursor = db.rawQuery(query, null);
     }
 
     //Закрытие БД
