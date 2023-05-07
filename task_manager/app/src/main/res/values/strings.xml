@@ -12,7 +12,7 @@
     <string name="clear_db">Очистить</string>
     <string-array name="sort_option">
         <item>Сортировка: Важные -> Неважные</item>
-        <item>Сортировка: НеВажные -> Важные</item>
+        <item>Сортировка: Неважные -> Важные</item>
     </string-array>
 
 </resources>

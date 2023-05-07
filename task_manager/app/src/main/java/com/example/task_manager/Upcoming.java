@@ -43,11 +43,11 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
 
 
         //Создание списка с чекбоксами. `simple_list_item_checked` -> параметр для создание чекбокса
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked, list) {
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list) {
             @Override
             public View getView(int position, View convertView, android.view.ViewGroup parent) {
                 CheckedTextView textView = (CheckedTextView) super.getView(position, convertView, parent);
-                textView.setCheckMarkDrawable(android.R.drawable.checkbox_on_background);
+                textView.setCheckMarkDrawable(android.R.drawable.checkbox_off_background);
                 return textView;
             }
         };
@@ -90,7 +90,7 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(adapterView.getContext(), "awda", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(adapterView.getContext(), "awda", Toast.LENGTH_SHORT).show();
     }
 
     @Override
