@@ -43,19 +43,7 @@ public class Completed extends AppCompatActivity {
             }
         };
         listViewData.setAdapter(adapter);
-        listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                // Получаем текст элемента, который нужно удалить
-                String item = adapter.getItem(position);
-                // Удаляем элемент из списка
-                adapter.remove(item);
-                myDbManager.insertToDb(item);
-                myDbManager.deleteCompletedData(item);
-                // Уведомляем адаптер об изменении данных
-                adapter.notifyDataSetChanged();
-            }
-        });
+
     }
 
     // переход на предстоящие задачи

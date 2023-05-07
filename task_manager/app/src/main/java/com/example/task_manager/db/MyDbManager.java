@@ -52,7 +52,7 @@ public class MyDbManager {
         return tempList;
     }
 
-    //Получение данных из таблицы предстоящих событий
+    //Получение данных из таблицы выполненных событий
     public ArrayList<String> getFromCompletedDb() {
         ArrayList<String> tempList = new ArrayList<String>();
         Cursor cursor = db.query(MyConstants.COMPLETED_TABLE_NAME, null, null, null, null, null, null);
@@ -72,11 +72,7 @@ public class MyDbManager {
     public void deleteData(String title) {
         db.delete(MyConstants.TABLE_NAME, MyConstants.TITLE + "=?", new String[]{title});
     }
-
-    //удаление данных из таблицы с предстоящими событиями
-    public void deleteCompletedData(String title) {
-        db.delete(MyConstants.COMPLETED_TABLE_NAME, MyConstants.TITLE + "=?", new String[]{title});
-    }
+    
     //Очистка таблицы с выполненными задачами
     public void clear_table(){
         db.execSQL("DELETE FROM " + MyConstants.COMPLETED_TABLE_NAME + ";");

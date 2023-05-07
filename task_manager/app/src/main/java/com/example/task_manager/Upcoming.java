@@ -48,6 +48,7 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
             public View getView(int position, View convertView, android.view.ViewGroup parent) {
                 CheckedTextView textView = (CheckedTextView) super.getView(position, convertView, parent);
                 textView.setCheckMarkDrawable(android.R.drawable.checkbox_off_background);
+
                 return textView;
             }
         };
