@@ -1,7 +1,9 @@
 package com.example.task_manager;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -51,14 +53,31 @@ public class Completed extends AppCompatActivity {
         Intent intent = new Intent(this, Upcoming.class);
         startActivity(intent);
     }
+
     //Очистка списка выполненных задач
-    public void Dbclear(View view){
-        if(list.size() == 0){
+    public void Dbclear(View view) {
+        if (list.size() == 0) {
             return;
         }
-        myDbManager.clear_table();
-        startActivity(new Intent(this, Completed.class));
-        Toast toast = Toast.makeText(getApplicationContext(), "Список очищен!", Toast.LENGTH_SHORT);toast.show();
+        // Создание диалогового окна
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Очистка списка");
+        builder.setMessage("Вы точно хотите очистить список?");
+        builder.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myDbManager.clear_table();
+                startActivity(new Intent(Completed.this, Completed.class));
+                Toast.makeText(getApplicationContext(), "Список очищен!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     @Override

@@ -72,7 +72,7 @@ public class MyDbManager {
     public void deleteData(String title) {
         db.delete(MyConstants.TABLE_NAME, MyConstants.TITLE + "=?", new String[]{title});
     }
-    
+
     //Очистка таблицы с выполненными задачами
     public void clear_table(){
         db.execSQL("DELETE FROM " + MyConstants.COMPLETED_TABLE_NAME + ";");
