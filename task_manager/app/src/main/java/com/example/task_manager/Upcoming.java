@@ -23,13 +23,14 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
     ArrayAdapter<String> adapter;
     ArrayAdapter<CharSequence> adapter1;
     ArrayList<String> list = new ArrayList<String>();
+    Spinner spinner;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uncoming);
-        Spinner spinner = findViewById(R.id.sort_spinner);
+        spinner = findViewById(R.id.sort_spinner);
         adapter1 = ArrayAdapter.createFromResource(this,R.array.sort_option, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter1);
@@ -93,6 +94,7 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        spinner.setSelection(i);
         //Toast.makeText(adapterView.getContext(), "awda", Toast.LENGTH_SHORT).show();
     }
 
