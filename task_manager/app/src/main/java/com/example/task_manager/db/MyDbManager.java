@@ -43,15 +43,16 @@ public class MyDbManager {
         Cursor cursor = db.query(MyConstants.TABLE_NAME, null, null, null, null, null, null);
 
         int titleIndex = cursor.getColumnIndex(MyConstants.TITLE);
-        if (titleIndex >= 0) {
-            while (cursor.moveToNext()) {
+        if (titleIndex >= 0 && cursor.moveToFirst()) {
+            do {
                 String title = cursor.getString(titleIndex);
                 tempList.add(title);
-            }
+            } while (cursor.moveToNext());
         }
         cursor.close();
         return tempList;
     }
+
 
     //Получение данных из таблицы выполненных событий
     public ArrayList<String> getFromCompletedDb() {
@@ -78,10 +79,12 @@ public class MyDbManager {
     public void clear_table() {
         db.execSQL("DELETE FROM " + MyConstants.COMPLETED_TABLE_NAME + ";");
     }
-    public void db_sort(){
-        String query = "SELECT * FROM " + MyConstants.TABLE_NAME + " ORDER BY " + MyConstants._ID + " DESC";
-        Cursor cursor = db.rawQuery(query, null);
-    }
+        public void db_sort(){
+            //SELECT * FROM TABLE_NAME ORDER BY _ID DESC;
+            String query = "SELECT * FROM " + MyConstants.TABLE_NAME + " ORDER BY " + MyConstants._ID + " DESC";
+            Cursor cursor = db.rawQuery(query, null);
+
+        }
 
     //Закрытие БД
     public void closeDb() {
