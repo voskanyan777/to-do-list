@@ -37,10 +37,10 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
 
         myDbManager = new MyDbManager(this);
         myDbManager.openDb();
-        myDbManager.db_sort();
+        //myDbManager.db_sort();
         //System.out.println(myDbManager.getFromDb());
 
-        list = myDbManager.getFromDb();
+        list = myDbManager.getFromDb("d");
         listViewData = findViewById(R.id.listView_data);
 
 

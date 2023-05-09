@@ -38,9 +38,16 @@ public class MyDbManager {
     }
 
     //Получение данных из таблицы предстоящих событий
-    public ArrayList<String> getFromDb() {
+    public ArrayList<String> getFromDb(String sort_option) {
+        Cursor cursor;
         ArrayList<String> tempList = new ArrayList<String>();
-        Cursor cursor = db.query(MyConstants.TABLE_NAME, null, null, null, null, null, null);
+        if (sort_option.equals("d")){
+            cursor = db.query(MyConstants.TABLE_NAME, null, null, null, null, null, MyConstants._ID + " DESC");
+        }
+        else{
+            cursor = db.query(MyConstants.TABLE_NAME, null, null, null, null, null, MyConstants._ID + " ASC");
+        }
+
 
         int titleIndex = cursor.getColumnIndex(MyConstants.TITLE);
         if (titleIndex >= 0 && cursor.moveToFirst()) {
@@ -52,6 +59,7 @@ public class MyDbManager {
         cursor.close();
         return tempList;
     }
+
 
 
     //Получение данных из таблицы выполненных событий
@@ -79,12 +87,20 @@ public class MyDbManager {
     public void clear_table() {
         db.execSQL("DELETE FROM " + MyConstants.COMPLETED_TABLE_NAME + ";");
     }
-        public void db_sort(){
-            //SELECT * FROM TABLE_NAME ORDER BY _ID DESC;
-            String query = "SELECT * FROM " + MyConstants.TABLE_NAME + " ORDER BY " + MyConstants._ID + " DESC";
-            Cursor cursor = db.rawQuery(query, null);
+//    public void db_sort(){
+//        // Создание временной таблицы
+//        db.execSQL("CREATE TABLE " + MyConstants.TABLE_NAME + "_temp AS SELECT * FROM " + MyConstants.TABLE_NAME + " ORDER BY " + MyConstants._ID + " DESC");
+//
+//        // Копирование данных во временную таблицу
+//        db.execSQL("INSERT INTO " + MyConstants.TABLE_NAME + "_temp SELECT * FROM " + MyConstants.TABLE_NAME);
+//
+//        // Удаление исходной таблицы
+//        db.execSQL("DROP TABLE " + MyConstants.TABLE_NAME);
+//
+//        // Переименование временной таблицы в исходное имя таблицы
+//        db.execSQL("ALTER TABLE " + MyConstants.TABLE_NAME + "_temp RENAME TO " + MyConstants.TABLE_NAME);
+//    }
 
-        }
 
     //Закрытие БД
     public void closeDb() {
