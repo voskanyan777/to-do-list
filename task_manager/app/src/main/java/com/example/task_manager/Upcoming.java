@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +31,7 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
 
     // Объявление ключа для сохранения значения Spinner
     private static final String KEY_SPINNER = "spinnerValue";
+    String selectedItem;
 
 
     @Override
@@ -44,10 +46,10 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
 
         myDbManager = new MyDbManager(this);
         myDbManager.openDb();
-        //myDbManager.db_sort();
-        //System.out.println(myDbManager.getFromDb());
 
-        list = myDbManager.getFromDb("d");
+
+
+
         listViewData = findViewById(R.id.listView_data);
 
         // Инициализация объекта SharedPreferences
@@ -57,7 +59,14 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
         // Установка сохраненного значения в Spinner
         int spinnerPosition = adapter1.getPosition(savedValue);
         spinner.setSelection(spinnerPosition);
-        String selectedItem = spinner.getSelectedItem().toString();
+
+        selectedItem = spinner.getSelectedItem().toString();
+        if (selectedItem.equals("Сортировка: Важные -> Неважные")){
+            list = myDbManager.getFromDb("d");
+        }
+        else if (!selectedItem.equals("Сортировка: Важные -> Неважные")){
+            list = myDbManager.getFromDb("n");
+        }
 
         //Создание списка с чекбоксами. `simple_list_item_checked` -> параметр для создание чекбокса
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list) {
@@ -113,6 +122,8 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_SPINNER, selectedValue);
         editor.apply();
+
+        
     }
 
     @Override
