@@ -32,7 +32,8 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
     // Объявление ключа для сохранения значения Spinner
     private static final String KEY_SPINNER = "spinnerValue";
     String selectedItem;
-
+    private boolean first_spinner = false;
+    private boolean second_spinner = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +61,22 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
         int spinnerPosition = adapter1.getPosition(savedValue);
         spinner.setSelection(spinnerPosition);
 
-        selectedItem = spinner.getSelectedItem().toString();
-        if (selectedItem.equals("Сортировка: Важные -> Неважные")){
+        try {
+
+            selectedItem = spinner.getSelectedItem().toString();
+            if (selectedItem.equals("Сортировка: Важные -> Неважные") && selectedItem != null) {
+                list = myDbManager.getFromDb("d");
+                first_spinner = true;
+            } else if (!selectedItem.equals("Сортировка: Важные -> Неважные") && selectedItem != null) {
+                list = myDbManager.getFromDb("n");
+                second_spinner = true;
+            } else if (selectedItem == null) {
+                list = myDbManager.getFromDb("d");
+            }
+        }
+         catch(Exception e){
             list = myDbManager.getFromDb("d");
-        }
-        else if (!selectedItem.equals("Сортировка: Важные -> Неважные")){
-            list = myDbManager.getFromDb("n");
-        }
+         }
 
         //Создание списка с чекбоксами. `simple_list_item_checked` -> параметр для создание чекбокса
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list) {
@@ -122,8 +132,16 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_SPINNER, selectedValue);
         editor.apply();
+        if (first_spinner && i == 1){
+            first_spinner = false;
+            startActivity(new Intent(this, Upcoming.class));
+        }
+        if(second_spinner && i == 0){
+            second_spinner = false;
+            startActivity(new Intent(this, Upcoming.class));
+        }
 
-        
+
     }
 
     @Override
