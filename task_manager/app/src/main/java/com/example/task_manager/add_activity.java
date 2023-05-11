@@ -96,5 +96,6 @@ public class add_activity extends AppCompatActivity {
 
     public void clear(View view){
         entertext.setText("");
+        sorttext.setText("");
     }
 }

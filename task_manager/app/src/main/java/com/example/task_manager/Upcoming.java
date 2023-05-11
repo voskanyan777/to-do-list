@@ -3,6 +3,7 @@ package com.example.task_manager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,11 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
     ArrayAdapter<CharSequence> adapter1;
     ArrayList<String> list = new ArrayList<String>();
     Spinner spinner;
+    // Объявление объекта SharedPreferences
+    SharedPreferences sharedPreferences;
+
+    // Объявление ключа для сохранения значения Spinner
+    private static final String KEY_SPINNER = "spinnerValue";
 
 
     @Override
@@ -44,6 +50,14 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
         list = myDbManager.getFromDb("d");
         listViewData = findViewById(R.id.listView_data);
 
+        // Инициализация объекта SharedPreferences
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        // Получение сохраненного значения Spinner из SharedPreferences
+        String savedValue = sharedPreferences.getString(KEY_SPINNER, "");
+        // Установка сохраненного значения в Spinner
+        int spinnerPosition = adapter1.getPosition(savedValue);
+        spinner.setSelection(spinnerPosition);
+        String selectedItem = spinner.getSelectedItem().toString();
 
         //Создание списка с чекбоксами. `simple_list_item_checked` -> параметр для создание чекбокса
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list) {
@@ -94,8 +108,11 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        spinner.setSelection(i);
-        //Toast.makeText(adapterView.getContext(), "awda", Toast.LENGTH_SHORT).show();
+        // Сохранение выбранного значения Spinner в SharedPreferences
+        String selectedValue = adapterView.getItemAtPosition(i).toString();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_SPINNER, selectedValue);
+        editor.apply();
     }
 
     @Override
