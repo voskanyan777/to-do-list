@@ -126,7 +126,10 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
                 builder.setPositiveButton("Изменить", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        Intent intent = new Intent(Upcoming.this,add_activity.class);
+                        intent.putExtra("Id", list_id.get(i));
+                        intent.putExtra("Title",list.get(i));
+                        startActivity(intent);
                     }
                 });
                 builder.setNegativeButton("Удалить", new DialogInterface.OnClickListener() {

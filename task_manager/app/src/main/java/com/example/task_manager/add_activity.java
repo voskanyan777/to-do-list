@@ -22,6 +22,8 @@ public class add_activity extends AppCompatActivity {
     EditText entertext;
     EditText sorttext;
     TextView text;
+    int id;
+    String title;
     private MyDbManager myDbManager;
 
     public static boolean input_valudation(String input){
@@ -37,9 +39,17 @@ public class add_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+        Intent intent = getIntent();
+        title = intent.getStringExtra("Title");
+        id = intent.getIntExtra("Id",0);
+
+
+
         entertext = findViewById(R.id.enter_text);
         sorttext = findViewById(R.id.sort_text);
         text = findViewById(R.id.error_text);
+        entertext.setText(title);
+        sorttext.setText(String.valueOf(id));
         myDbManager = new MyDbManager(this);
         prefs1 = getSharedPreferences("com.example.task_manager", MODE_PRIVATE);
         myDbManager.openDb();
