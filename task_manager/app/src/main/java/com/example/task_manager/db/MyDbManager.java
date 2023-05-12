@@ -59,6 +59,27 @@ public class MyDbManager {
         cursor.close();
         return tempList;
     }
+    public ArrayList<Integer> getIdFromDb(String sort_option) {
+        Cursor cursor;
+        ArrayList<Integer> tempList = new ArrayList<Integer>();
+        if (sort_option.equals("d")){
+            cursor = db.query(MyConstants.TABLE_NAME, null, null, null, null, null, MyConstants._ID + " DESC");
+        }
+        else{
+            cursor = db.query(MyConstants.TABLE_NAME, null, null, null, null, null, MyConstants._ID + " ASC");
+        }
+
+
+        int titleIndex = cursor.getColumnIndex(MyConstants._ID);
+        if (titleIndex >= 0 && cursor.moveToFirst()) {
+            do {
+                int title = cursor.getInt(titleIndex);
+                tempList.add(title);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return tempList;
+    }
 
 
 

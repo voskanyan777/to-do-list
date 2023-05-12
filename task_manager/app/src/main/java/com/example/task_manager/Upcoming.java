@@ -1,7 +1,9 @@
 package com.example.task_manager;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
     ArrayAdapter<String> adapter;
     ArrayAdapter<CharSequence> adapter1;
     ArrayList<String> list = new ArrayList<String>();
+    ArrayList<Integer> list_id = new ArrayList<Integer>();
     Spinner spinner;
     // Объявление объекта SharedPreferences
     SharedPreferences sharedPreferences;
@@ -66,17 +69,23 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
             selectedItem = spinner.getSelectedItem().toString();
             if (selectedItem.equals("Сортировка: Важные -> Неважные") && selectedItem != null) {
                 list = myDbManager.getFromDb("d");
+                list_id = myDbManager.getIdFromDb("d");
                 first_spinner = true;
             } else if (!selectedItem.equals("Сортировка: Важные -> Неважные") && selectedItem != null) {
                 list = myDbManager.getFromDb("n");
+                list_id = myDbManager.getIdFromDb("n");
                 second_spinner = true;
             } else if (selectedItem == null) {
                 list = myDbManager.getFromDb("d");
+                list_id = myDbManager.getIdFromDb("d");
+
             }
         }
          catch(Exception e){
             list = myDbManager.getFromDb("d");
+            list_id = myDbManager.getIdFromDb("d");
          }
+        System.out.println(list_id);
 
         //Создание списка с чекбоксами. `simple_list_item_checked` -> параметр для создание чекбокса
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list) {
@@ -104,6 +113,35 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
                 Toast toast = Toast.makeText(getApplicationContext(), "Задача выполнена! \uD83D\uDE00", Toast.LENGTH_SHORT);toast.show();
                 // Уведомляем адаптер об изменении данных
                 adapter.notifyDataSetChanged();
+            }
+        });
+        //Обработчик на долгое нажатие на элемент списка
+        listViewData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                System.out.println(list.get(i));
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Очистка списка");
+                builder.setMessage("Вы точно хотите очистить список?");
+                builder.setPositiveButton("Изменить", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setNegativeButton("Удалить", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        myDbManager.deleteData(list.get(i));
+                        String toast_text = "Элемент `" + list.get(i) + "` был удален";
+                        Toast toast = Toast.makeText(getApplicationContext(), toast_text, Toast.LENGTH_SHORT);toast.show();
+
+                        startActivity(new Intent(Upcoming.this, Upcoming.class));
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+                return false;
             }
         });
     }
