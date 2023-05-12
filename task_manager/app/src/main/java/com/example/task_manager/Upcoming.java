@@ -121,8 +121,8 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                System.out.println(list.get(i));
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("Очистка списка");
-                builder.setMessage("Вы точно хотите очистить список?");
+                builder.setTitle("Меню");
+                builder.setMessage("Выберите действие");
                 builder.setPositiveButton("Изменить", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -28,8 +28,11 @@ public class add_activity extends AppCompatActivity {
 
     public static boolean input_valudation(String input){
         try{
-            Integer.parseInt(input);
-            return true;
+            int result = Integer.parseInt(input);
+            if (result >=0 && result <= 100) {
+                return true;
+            }
+            return false;
         }
         catch (Exception e){
             return false;
@@ -41,7 +44,7 @@ public class add_activity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
         Intent intent = getIntent();
         title = intent.getStringExtra("Title");
-        id = intent.getIntExtra("Id",0);
+        id = intent.getIntExtra("Id",-1);
 
 
 
@@ -49,7 +52,10 @@ public class add_activity extends AppCompatActivity {
         sorttext = findViewById(R.id.sort_text);
         text = findViewById(R.id.error_text);
         entertext.setText(title);
-        sorttext.setText(String.valueOf(id));
+        if(id != -1) {
+            sorttext.setText(String.valueOf(id));
+        }
+
         myDbManager = new MyDbManager(this);
         prefs1 = getSharedPreferences("com.example.task_manager", MODE_PRIVATE);
         myDbManager.openDb();
@@ -59,7 +65,7 @@ public class add_activity extends AppCompatActivity {
             String instruction =
                     "Здесь вы можете добавлять свои задачи.\n" +
                     "В первом поле вы вводите название задачи, а во втором его важность.\n" +
-                            "Важность задачи записывается в виде целого числа.\n" +
+                            "Важность задачи записывется в виде целого числа от 0 до 100.\n" +
                             "Учтите, что при неправильном вводе программа будет вам сообщать об этом!";
             builder.setMessage(instruction);
             builder.setPositiveButton("Понятно", new DialogInterface.OnClickListener() {
@@ -92,15 +98,30 @@ public class add_activity extends AppCompatActivity {
             return;
         }
         if(!entertext.getText().toString().equals("") && !input_valudation(sorttext.getText().toString())){
-            text.setText("Поле `Важность` должна содержать целое число!");
+            text.setText("Заполните корректно поле `Важность`!");
             return;
         }
-        myDbManager.insertToDb(entertext.getText().toString(),Integer.parseInt(sorttext.getText().toString()));
-        myDbManager.closeDb();
-        toast = Toast.makeText(getApplicationContext(), "Задача добавлена", Toast.LENGTH_SHORT);
-        toast.show();
-        Intent intent = new Intent(this,Upcoming.class);
-        startActivity(intent);
+        //Не работает 
+//        if(entertext.getText().toString().equals(title) && sorttext.getText().toString().equals(String.valueOf(id))){
+//            startActivity(new Intent(this,Upcoming.class));
+//        }
+        if (title != null && id != -1){
+            myDbManager.deleteData(title);
+            myDbManager.insertToDb(entertext.getText().toString(),Integer.parseInt(sorttext.getText().toString()));
+            myDbManager.closeDb();
+            toast = Toast.makeText(getApplicationContext(),"Задача изменена!",Toast.LENGTH_SHORT);
+            toast.show();
+            Intent intent = new Intent(this,Upcoming.class);
+            startActivity(intent);
+        }
+        else {
+            myDbManager.insertToDb(entertext.getText().toString(), Integer.parseInt(sorttext.getText().toString()));
+            myDbManager.closeDb();
+            toast = Toast.makeText(getApplicationContext(), "Задача добавлена!", Toast.LENGTH_SHORT);
+            toast.show();
+            Intent intent = new Intent(this, Upcoming.class);
+            startActivity(intent);
+        }
     }
 
 
