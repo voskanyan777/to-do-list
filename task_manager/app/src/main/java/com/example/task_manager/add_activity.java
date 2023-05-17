@@ -101,7 +101,7 @@ public class add_activity extends AppCompatActivity {
             text.setText("Заполните корректно поле `Важность`!");
             return;
         }
-        //Не работает 
+        //Не работает
 //        if(entertext.getText().toString().equals(title) && sorttext.getText().toString().equals(String.valueOf(id))){
 //            startActivity(new Intent(this,Upcoming.class));
 //        }
