@@ -28,11 +28,8 @@ public class add_activity extends AppCompatActivity {
 
     public static boolean input_valudation(String input){
         try{
-            int result = Integer.parseInt(input);
-            if (result >=0 && result <= 100) {
-                return true;
-            }
-            return false;
+            Integer.parseInt(input);
+            return true;
         }
         catch (Exception e){
             return false;
@@ -90,7 +87,7 @@ public class add_activity extends AppCompatActivity {
             return;
         }
         if(!entertext.getText().toString().equals("") && sorttext.getText().toString().equals("")){
-            text.setText("Поле `Важность` не должна быть пустым!");
+            text.setText("В поле `Важность` должно быть целое число от 0 до 100");
             return;
         }
         if(entertext.getText().toString().equals("") && !sorttext.getText().toString().equals("")){
@@ -98,9 +95,18 @@ public class add_activity extends AppCompatActivity {
             return;
         }
         if(!entertext.getText().toString().equals("") && !input_valudation(sorttext.getText().toString())){
-            text.setText("Заполните корректно поле `Важность`!");
+            text.setText("В поле `Важность` должно быть целое число от 0 до 100");
             return;
         }
+        if(!entertext.getText().toString().equals("") && input_valudation(sorttext.getText().toString())){
+            int number = Integer.parseInt(sorttext.getText().toString());
+            if (number < 0 || number> 100){
+                text.setText("В поле `Важность` должно быть целое число от 0 до 100");
+                return;
+            }
+        }
+
+
         //Не работает
 //        if(entertext.getText().toString().equals(title) && sorttext.getText().toString().equals(String.valueOf(id))){
 //            startActivity(new Intent(this,Upcoming.class));
