@@ -34,15 +34,17 @@
             android:textSize="30sp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="376dp"
             android:layout_below="@id/greetings_ins"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/montserrat_bold"
-            android:gravity="fill"
+            android:gravity="fill_horizontal"
             android:lineHeight="30dp"
             android:text="@string/about_tm"
-            android:textSize="23sp" />
+            android:textSize="23dp" />
+
+
     </RelativeLayout>
 
     <Button

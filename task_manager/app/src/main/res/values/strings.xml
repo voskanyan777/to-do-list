@@ -2,7 +2,7 @@
     <string name="app_name">To-do list</string>
     <string name="main_button">Продолжить</string>
     <string name="greetings">Приветствуем, пользователь!</string>
-    <string name="about_tm">Добро пожаловать в ваш новый task manager! Здесь вы сможете легко создавать и управлять своими задачами, следить за сроками и отслеживать прогресс. Мы надеемся, что это приложение станет вашим незаменимым помощником.</string>
+    <string name="about_tm">Добро пожаловать в приложение to-do list! Управляй задачами легко и эффективно: добавляй, удаляй, изменяй и сортируй их по важности. Давай достигать целей вместе!</string>
     <string name="completed_button">Предстоящие</string>
     <string name="completed_highlight">Выполненные задачи</string>
     <string name="upcoming_button">Выполненные</string>
