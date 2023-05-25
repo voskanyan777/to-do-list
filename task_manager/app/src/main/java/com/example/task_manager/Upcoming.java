@@ -177,13 +177,13 @@ public class Upcoming extends AppCompatActivity implements AdapterView.OnItemSel
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_SPINNER, selectedValue);
         editor.apply();
-        if (first_spinner && i == 1) {
+        if (first_spinner && i == 1 && list.size() != 0) {
             first_spinner = false;
             Toast toast = Toast.makeText(getApplicationContext(), "Задачи были отсортированы!", Toast.LENGTH_SHORT);
             toast.show();
             startActivity(new Intent(this, Upcoming.class));
         }
-        if (second_spinner && i == 0) {
+        if (second_spinner && i == 0 && list.size() != 0) {
             second_spinner = false;
             Toast toast = Toast.makeText(getApplicationContext(), "Задачи были отсортированы!", Toast.LENGTH_SHORT);
             toast.show();
