@@ -71,6 +71,7 @@
             android:textSize="20sp"
             android:text="@string/clear_db" />
 
+
         <!--        <Button-->
         <!--            android:id="@+id/plus_button"-->
         <!--            android:layout_width="60dp"-->

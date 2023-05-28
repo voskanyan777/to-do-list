@@ -7,7 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class logoactivity extends AppCompatActivity {
-    private static final long DELAY_TIME = 1750; // 2 seconds delay
+    private static final long DELAY_TIME = 2500; // 2 seconds delay
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
